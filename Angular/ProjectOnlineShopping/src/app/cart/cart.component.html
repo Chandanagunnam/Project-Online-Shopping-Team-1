@@ -1,0 +1,18 @@
+<div class="alert alert-success" *ngIf="products.length>0;else empty">
+    <p *ngFor="let product of products">
+        ProductName:{{product.ProductName}}
+        <br/>
+        Quantity:{{product.Quantity}}
+        <br/>
+        Price:{{product.ProductPrice}}
+        <br/>
+        {{product.ProductPrice*product.Quantity}}<br/>
+        <button (click)="removeItem(product)">Remove from Cart</button>
+    </p>
+    <p class="text text-danger">Total Price:{{grandTotal}}</p>
+    </div>
+    <ng-template #empty>
+        <p>
+            Your cart is empty!!!!
+         </p> 
+    </ng-template>  
