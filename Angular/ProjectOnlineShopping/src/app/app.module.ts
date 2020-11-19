@@ -11,8 +11,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { productservice } from 'src/services/productservice';
 
 import{HttpClientModule} from '@angular/common/http';
-import { CartComponent } from './cart/cart.component';
-
+import { ProductlistComponent } from './productlist/productlist.component';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,19 @@ import { CartComponent } from './cart/cart.component';
     ProductCrudComponent,
     LoginComponent,
     RegistrationComponent,
-    CartComponent
+    ProductlistComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+   // BrowserAnimationsModule,
+    //MatDialogModule
 
   ],
+
   providers: [productservice],
   bootstrap: [AppComponent]
 })

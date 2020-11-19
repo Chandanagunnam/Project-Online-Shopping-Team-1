@@ -8,6 +8,8 @@
         <th>Brand</th>
         <th>Quantity</th>
         <th>Instock</th>
+        <th>ImageID</th>
+        <th>RetailerID</th>
     </tr>
     <tr *ngFor="let p of products;let i=index">
         <td>{{p.ProductCode}}</td>
@@ -18,50 +20,79 @@
         <td>{{p.Brand}}</td>
         <td>{{p.Quantity}}</td>
         <td>{{p.InStock}}</td>
-
+        <td>{{p.ImageID}}</td>
+        <td>{{p.RetailerID}}</td>
         <td><button (click)="removeProd(p.ProductID)">Delete</button></td>
         <td><button (click)="getparticularProduct(p.ProductID)">Edit</button></td>
     </tr>
-    </table>
+</table>
     
     <hr/>
    <form #prodform="ngForm">
-        <p>
-          ProductID :
+    <div class="form-group">
+        <label>ProductID</label>
             <input hidden type="number" name="ProductID" [(ngModel)]="prod.ProductID" #ProductID=ngModel/>
-        </p>
-        <p>
-            ProductName :
+    </div>
+    <div class="form-group">
+      <label>Product Code
+      </label>
+    <input type="text" name="ProductCode" [(ngModel)]="prod.ProductCode" #ProductCode=ngModel/>
+
+    </div>
+    <div class="form-group">
+
+       <label>ProductName </label>
+            
               <input type="text" name="ProductName" [(ngModel)]="prod.ProductName" #ProductName=ngModel/>
-        </p>
-          <p>
-            CategoryID:
-            <input type="number" name="CategoryID" [(ngModel)]="prod.CategoryID" #CategoryID=ngModel/>
-          </p>
-        <p>
-           ProductDescription:
-           <input type="text" name="ProductDescription" [(ngModel)]="prod.ProductDescription" #ProductDescription=ngModel/>
-        </p>
-        <p>
-            ProductPrice:
+    </div>          
+    <div class="form-group">
+            <label>CategoryName</label>
+            <select name ="CategoryID" [(ngModel)]="prod.CategoryID" #categoryID=ngModel><option value="undefined">Select Category</option>
+            <option *ngFor="let Category of categorylist" value="{{Category.CategoryID}}">{{Category.CategoryName}}</option></select>
+            <!--<input type="number" name="CategoryID" [(ngModel)]="prod.CategoryID" #CategoryID=ngModel/>-->
+     </div>   
+            <div class="form-group">
+             <label>ProductDescription</label> 
+              <input type="text" name="ProductDescription" [(ngModel)]="prod.ProductDescription" #ProductDescription=ngModel/>
+            </div>     
+         
+            <div class="form-group">
+
+            <label>ProductPrice</label>
             <input type="text" name="ProductPrice" [(ngModel)]="prod.ProductPrice" #ProductPrice=ngModel/>
-         </p>
-         <p>
-            Brand:
+</div>
+
+<div class="form-group">
+  <label>Brand</label>
             <input type="text" name="Brand" [(ngModel)]="prod.Brand" #Brand=ngModel/>
-         </p>
-         <p>
-             Quantity:
+</div>
+           
+         
+<div class="form-group">
+<label>Quantity</label>  
              <input type="number" name="Quantity" [(ngModel)]="prod.Quantity" #Quantity=ngModel/>
 
-         </p>
-         <p>
-            Instock:
+</div>
+<div class="form-group">
+  <label>Stock</label>
             <input type="radio" name="Instock" value= "true" [(ngModel)]="prod.Instock"#Instock=ngModel/>Instock
            <input type="radio" name="Instock" value="false" [(ngModel)]="prod.Instock" #Instock=ngModel>OutOfStock
 
-        </p>
-          <p><button (click)="addProduct()">Add Product</button></p>
-    
-          <p><button (click)="updateparticularProd(prod)">Update Product</button></p>
+</div>       
+
+<div class="form-group">
+  <label>ImageID</label>
+  <input type="number" name="ImageID" [(ngModel)]="prod.ImageID" #ImageID=ngModel/>
+</div>
+<div class="form-group">
+  <label>RetailerID</label>
+          <input type="number" name="RetailerID" [(ngModel)]="prod.RetailerID" #RetailerID=ngModel/>
+</div
+>        <div class="form-group">
+  <button (click)="addProduct()">Add Product</button>
+  </div>
+    <div class="form-group">
+
+          <button (click)="updateparticularProd(prod)">Update Product</button>
+        </div>
     </form>

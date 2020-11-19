@@ -12,44 +12,44 @@ using APIProjectOnlineShopping.Models;
 
 namespace APIProjectOnlineShopping.Controllers
 {
-    public class ProductsController : ApiController
+    public class CategoriesController : ApiController
     {
         private DbonlineshoppingEntities db = new DbonlineshoppingEntities();
 
-        // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        // GET: api/Categories
+        public IQueryable<Category> GetCategories()
         {
-            return db.Products;
+            return db.Categories;
         }
 
-        // GET: api/Products/5
-        [ResponseType(typeof(Product))]
-        public IHttpActionResult GetProduct(int id)
+        // GET: api/Categories/5
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult GetCategory(int id)
         {
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            return Ok(category);
         }
 
-        // PUT: api/Products/5
+        // PUT: api/Categories/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProduct(int id, Product product)
+        public IHttpActionResult PutCategory(int id, Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != product.ProductID)
+            if (id != category.CategoryID)
             {
                 return BadRequest();
             }
 
-            db.Entry(product).State = EntityState.Modified;
+            db.Entry(category).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace APIProjectOnlineShopping.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id))
+                if (!CategoryExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace APIProjectOnlineShopping.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Products
-        [ResponseType(typeof(Product))]
-        public IHttpActionResult PostProduct(Product product)
+        // POST: api/Categories
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult PostCategory(Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Products.Add(product);
+            db.Categories.Add(category);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.ProductID }, product);
+            return CreatedAtRoute("DefaultApi", new { id = category.CategoryID }, category);
         }
 
-        // DELETE: api/Products/5
-        [ResponseType(typeof(Product))]
-        public IHttpActionResult DeleteProduct(int id)
+        // DELETE: api/Categories/5
+        [ResponseType(typeof(Category))]
+        public IHttpActionResult DeleteCategory(int id)
         {
-            Product product = db.Products.Find(id);
-            if (product == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            db.Products.Remove(product);
+            db.Categories.Remove(category);
             db.SaveChanges();
 
-            return Ok(product);
+            return Ok(category);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace APIProjectOnlineShopping.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductExists(int id)
+        private bool CategoryExists(int id)
         {
-            return db.Products.Count(e => e.ProductID == id) > 0;
+            return db.Categories.Count(e => e.CategoryID == id) > 0;
         }
     }
 }

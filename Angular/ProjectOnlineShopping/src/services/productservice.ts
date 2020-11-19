@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Products} from 'src/models/Products.model'
+import {Products} from 'src/models/Products.model';
 
 @Injectable({ providedIn: "root" })
 export class productservice{
@@ -16,7 +16,7 @@ getProduct(){
 }
 
 insertProduct(prod){
-    return this.http.get(this.uri,prod);
+    return this.http.post(this.uri,prod);
 }
 
 //delete
@@ -40,7 +40,8 @@ public updateProduct(product:Products)
     return this.http.put(this.uri+product.ProductID,product)
 }
 
-public addToCartService(product:Products)
+
+/*public addToCartService(product:Products)
 {
     //If the product already exist in cart adding quantity alone
     let flag=0;
@@ -94,5 +95,5 @@ removeItemfromCartservice(pro)
         }
     }
 }
-
+*/
 }
